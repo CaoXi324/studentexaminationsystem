@@ -61,5 +61,45 @@ public class StudentDao {
 
         return student;
     }
+
+    public void addStudentInfo(String studentInfo) throws SQLException {
+        int studentId=Integer.valueOf(studentInfo.split(",")[0]);
+        String name=studentInfo.split(",")[1];
+        String sex=studentInfo.split(",")[2];
+        UserDao userDao=new UserDao();
+        int userId=userDao.addUser(name,1);
+        String sql="insert into student values('"+userId+"','"+studentId+"','"+name+"','"+sex+"')";
+        Update update=new Update();
+        int line=0;
+        line=update.update(sql);
+        System.out.println(line);
+    }
+
+    public void alterStudentInfo(String studentInfo) throws SQLException {
+        int studentId=Integer.valueOf(studentInfo.split(",")[0]);
+        String name=studentInfo.split(",")[1];
+        String sex=studentInfo.split(",")[2];
+        String sql="update student set name='"+name+"',sex='"+sex+"' where student_id='"+studentId+"'";
+        Update update=new Update();
+        if(update.update(sql)!=0) {
+            System.out.println("修改成功！");
+        }
+    }
+
+    public void deleStudent(String studentId) throws SQLException {
+        String sql1="select*from student where student_id='"+studentId+"'";
+        Query query=new Query();
+        ResultSet resultSet=query.query(sql1);
+        String studentName=query.queryNameById(resultSet);
+        StudentDao studentDao=new StudentDao();
+        int userId=studentDao.getStudent(studentName).getUserId();
+        UserDao userDao=new UserDao();
+        userDao.deleUser(userId);
+        String sql="delete from student where student_id='"+studentId+"'";
+        Update update=new Update();
+        update.update(sql);
+        System.out.println("删除学生["+studentName+"，学号："+studentId+"]成功！");
+    }
 }
+
 

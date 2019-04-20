@@ -1,19 +1,12 @@
 package main;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-import main.dao.ScoreDao;
-import main.dao.StudentDao;
-import main.dao.SubjectDao;
-import main.dao.TeacherDao;
+import main.dao.*;
 import main.module.*;
-import main.service.Service;
 import main.service.UserService;
 import main.tools.Input;
 import main.tools.Print;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Main {
@@ -26,6 +19,7 @@ public class Main {
         SubjectDao subjectDao = new SubjectDao();
         ScoreDao scoreDao = new ScoreDao();
         Print print = new Print();
+        Update update = new Update();
         boolean loginSuccess;
         do {
             System.out.println(note.getWELCOMENOTE());
@@ -93,18 +87,77 @@ public class Main {
                 break;
             case "1.3.2":
                 System.out.println(note.getQUARYTEACHERINFO());
-                String teacherName2=input.getInput();
-                Teacher teacher3=teacherDao.getTeacher(teacherName2);
+                String teacherName2 = input.getInput();
+                Teacher teacher3 = teacherDao.getTeacher(teacherName2);
                 print.printTeacherInfo(teacher3);
                 break;
             case "2.1":
                 System.out.println(note.INPUTSTUDENTINFO);
-                String studentInfo=input.getInput();
-                List<String> stringList= Arrays.asList(studentInfo);
-
-
-
+                String studentInfo = input.getInput();
+                studentDao.addStudentInfo(studentInfo);
+                break;
+            case "2.2":
+                System.out.println(note.getINPUTSUBJECT());
+                String subjectInfo = input.getInput();
+                subjectDao.addSubjectInfo(subjectInfo);
+                break;
+            case "2.3":
+                System.out.println(note.getINPUTTERCHER());
+                String teacherInfo = input.getInput();
+                teacherDao.addTeacherInfo(teacherInfo);
+                break;
+            case "2.4":
+                System.out.println(note.ADDSTUDENTSCORE);
+                String score = input.getInput();
+                scoreDao.addScore(score);
+                break;
+            case "3.1":
+                System.out.println(note.ALTERSTUDENTBYID);
+                String studentInfo1 = input.getInput();
+                studentDao.alterStudentInfo(studentInfo1);
+                break;
+            case "3.2":
+                System.out.println(note.ALTERSUBJECTINFO);
+                String subjectInfo1 = input.getInput();
+                subjectDao.alterSubjectInfo(subjectInfo1);
+                break;
+            case "3.3":
+                System.out.println(note.ALTERTEACHERINFO);
+                String teacherInfo1 = input.getInput();
+                teacherDao.alterTeacherInfo(teacherInfo1);
+                break;
+            case "3.4":
+                System.out.println(note.ALTERSTUDENTSCORE);
+                String score1 = input.getInput();
+                scoreDao.alterScore(score1);
+                break;
+            case "4.1":
+                System.out.println(note.DELETESTUDENTNOTE);
+                String deleNumber = input.getInput();
+                if (deleNumber.equals("1")) {
+                    System.out.println(note.DELETESTUDENTID);
+                    String studentId = input.getInput();
+                    studentDao.deleStudent(studentId);
+                }
+                break;
+            case "4.2":
+                System.out.println(note.DELETESUBJECTNOTE);
+                String deleNumber1 = input.getInput();
+                if (deleNumber1.equals("1")) {
+                    System.out.println(note.DELETESUBJECTID);
+                    String subjectName1 = input.getInput();
+                    subjectDao.deleSubject(subjectName1);
+                }
+                break;
+            case "4.3":
+                System.out.println(note.DELETETEACHERNOTE);
+                String deleNumber2 = input.getInput();
+                if (deleNumber2.equals("1")) {
+                    System.out.println(note.DELETETEACHERID);
+                    String teacherId = input.getInput();
+                    teacherDao.deleTeacher(teacherId);
+                }
+                break;
         }
-
     }
 }

@@ -34,7 +34,7 @@ public class Note {
                     "\t4.3 删除指定课程\n" +
                     "\t4.3 删除指定老师";
     public final String INPUTSTUDENTINFO =
-            "请输入学生信息(例如：学号：1001，姓名： 小明, 年龄： 18, 性别： 男)：";
+            "请输入学生信息(例如：学号：1001，姓名： 小明, 性别： 男)：";
     public final String INPUTTERCHER=
             "请输入老师信息(例如：工号：2001，姓名：王老师, 所教课程：语文)：";
     public final String INPUTSUBJECT=
@@ -46,7 +46,7 @@ public class Note {
     public final String ALTERSUBJECTINFO=
             "请输入要修改的课程信息(例如：课程id：3001，课程名称：语文, 任课老师：王老师)：";
     public final String ALTERTEACHERINFO=
-            "请输入要修改的老师信息(例如：工号：2001，姓名：王老师, 所教课程：语文)：";
+            "请输入要修改的老师信息(例如：工号：2001，姓名：王老师, 性别： 男, 所教课程：语文)：";
     public final String ALTERSTUDENTSCORE=
             "请输入要修改的成绩信息(例如：学生姓名：小明，课程名称：语文, 分数：100)：";
     public final String DELETESTUDENTNOTE =
@@ -60,7 +60,7 @@ public class Note {
                     "1. 是\n" +
                     "2. 否";
     public final String DELETESUBJECTID=
-            "请输入您需要删除的课程id：";
+            "请输入您需要删除的课程：";
     public final String DELETETEACHERNOTE =
             "删除老师之后，该老师信息将不能恢复，是否要继续删除？\n" +
                     "1. 是\n" +

@@ -63,5 +63,32 @@ public class ScoreDao {
 
     }
 
+    public void addScore(String score) throws SQLException {
+        String studentName=score.split(",")[0];
+        String subjectName=score.split(",")[1];
+        int point=Integer.valueOf(score.split(",")[2]);
+        SubjectDao subjectDao=new SubjectDao();
+        StudentDao studentDao=new StudentDao();
+        int subjectId=subjectDao.getSubject(subjectName).getsubjectId();
+        int studentId=studentDao.getStudent(studentName).getStudentId();
+        String sql="insert into score values(0,'"+studentId+"','"+subjectId+"','"+point+"')";
+        Update update=new Update();
+        update.update(sql);
+    }
+
+    public void alterScore(String score) throws SQLException {
+        String studentName=score.split(",")[0];
+        String subjectName=score.split(",")[1];
+        int point=Integer.valueOf(score.split(",")[2]);
+        StudentDao studentDao=new StudentDao();
+        SubjectDao subjectDao=new SubjectDao();
+        int studentId=studentDao.getStudent(studentName).getStudentId();
+        int subjectId=subjectDao.getSubject(subjectName).getsubjectId();
+        String sql="update score set point='"+point+"' where subject_id=" +
+                "'"+subjectId+"' and student_id='"+studentId+"'";
+        Update update=new Update();
+        update.update(sql);
+    }
+
 
 }
